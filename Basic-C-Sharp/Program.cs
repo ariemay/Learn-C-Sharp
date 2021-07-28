@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 
 namespace BasicCSharp
 {
@@ -6,15 +7,48 @@ namespace BasicCSharp
     {
         public static void Main(string[] args)
         {
-            int sum = 0;
-            for (int number = 1; number < 21; number++)
+            var names = new List<string> { "<name>", "Ana", "Felipe" };
+            var index = names.IndexOf("Felipe");
+            if (index != -1)
+                Console.WriteLine($"The name {names[index]} is at index {index}");
+
+            var notFound = names.IndexOf("Not Found");
+            Console.WriteLine($"When an item is not found, IndexOf returns {notFound}");
+
+            for (int i = 0; i < names.Count; i++)
             {
-                if (number % 3 == 0)
-                {
-                    sum = sum + number;
-                }
+                Console.WriteLine($"Hello {names[i]}");
             }
-            Console.WriteLine($"The sum is {sum}");
+
+            names.Sort();
+            foreach (var name in names)
+            {
+                Console.WriteLine($"Hello {name.ToUpper()}!");
+            }
+
+            // test
+            //var fibonacciNumbers = new List<int> { 1, 1 };
+            //var previous = fibonacciNumbers[fibonacciNumbers.Count - 1];
+            //var previous2 = fibonacciNumbers[fibonacciNumbers.Count - 2];
+
+            //fibonacciNumbers.Add(previous + previous2);
+
+            //foreach (var item in fibonacciNumbers)
+            //    Console.WriteLine(item);
+
+
+            var fibonacciNumbers = new List<int> { 1, 1 };
+
+            while (fibonacciNumbers.Count < 20)
+            {
+                var previous = fibonacciNumbers[fibonacciNumbers.Count - 1];
+                var previous2 = fibonacciNumbers[fibonacciNumbers.Count - 2];
+
+                fibonacciNumbers.Add(previous + previous2);
+            }
+            foreach (var item in fibonacciNumbers)
+                Console.WriteLine(item);
+
         }
     }
 }
